@@ -24,82 +24,190 @@ canvas {
 
 #hud {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 18px;
+  left: 18px;
   display: flex;
-  gap: 18px;
-  z-index: 10;
+  flex-wrap: wrap;
+  gap: 14px;
+  z-index: 15;
 }
 
 .panel {
   background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 12px;
   padding: 10px 14px;
-  min-width: 110px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  min-width: 112px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .panel span {
-  font-size: 12px;
+  display: block;
+  font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  opacity: 0.8;
+  opacity: 0.85;
+  margin-bottom: 6px;
 }
 
 .panel strong {
   font-size: 24px;
+  font-weight: 700;
 }
 
-#message {
+.health-bar {
+  width: 110px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 6px;
+}
+
+#healthFill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #16a34a, #facc15, #ef4444);
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+#message,
+#pauseMenu,
+#gameOverScreen {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(5px);
-  z-index: 20;
+  z-index: 30;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
-  text-align: center;
 }
 
-#message.visible {
+#message.visible,
+#pauseMenu.visible,
+#gameOverScreen.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-#message h1 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 4rem);
+#message,
+#pauseMenu,
+#gameOverScreen {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(5px);
 }
 
-#message p {
-  margin: 0;
-  font-size: 1.1rem;
+.menu-container,
+.pause-content,
+.game-over-content {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  padding: 28px 32px;
+  min-width: min(92vw, 460px);
+  text-align: center;
+}
+
+#message h1,
+#gameOverTitle,
+#pauseMenu h2 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.subtitle {
+  margin: 0 0 16px;
+  font-size: 1.14rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.difficulty-btn,
+.menu-btn,
+.start-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.difficulty-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.difficulty-btn.active {
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: white;
+}
+
+.start-btn {
+  margin-top: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  min-width: 180px;
+}
+
+.menu-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.difficulty-btn:hover,
+.menu-btn:hover,
+.start-btn:hover {
+  transform: translateY(-1px);
+}
+
+.controls {
+  margin-top: 18px;
   color: rgba(255, 255, 255, 0.85);
 }
 
-#startButton {
-  margin-top: 12px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #38bdf8, #2563eb);
-  color: white;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 14px 26px;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+.controls p {
+  margin: 6px 0;
 }
 
-#startButton:hover {
-  transform: translateY(-1px);
+.pause-content h2 {
+  margin: 0 0 18px;
+}
+
+.game-over-content {
+  min-width: min(90vw, 420px);
+}
+
+.stats {
+  margin: 18px 0;
+  text-align: left;
+  display: grid;
+  gap: 10px;
+}
+
+.stats p {
+  margin: 0;
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.restart-hint {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.8);
 }

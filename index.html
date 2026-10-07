@@ -3,26 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Car Racing Game</title>
+    <title>3D Car Racing Game - Advanced</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="hud">
-      <div class="panel">
+      <div class="panel score-panel">
         <span>Score</span>
         <strong id="score">0</strong>
       </div>
-      <div class="panel">
+      <div class="panel speed-panel">
         <span>Speed</span>
         <strong id="speed">0</strong>
+      </div>
+      <div class="panel coins-panel">
+        <span>💰 Coins</span>
+        <strong id="coins">0</strong>
+      </div>
+      <div class="panel health-panel">
+        <span>Health</span>
+        <div id="healthBar" class="health-bar"><div id="healthFill"></div></div>
       </div>
     </div>
 
     <div id="message" class="visible">
-      <h1>3D Car Racing</h1>
-      <p>Use A/D or Arrow Keys to steer</p>
-      <p>Press R to restart after a crash</p>
-      <button id="startButton">Start Race</button>
+      <div class="menu-container">
+        <h1>🏎️ 3D Car Racing</h1>
+        <p class="subtitle">High-Speed Racing Game</p>
+        <div class="menu-buttons">
+          <button id="easyBtn" class="difficulty-btn">Easy</button>
+          <button id="normalBtn" class="difficulty-btn active">Normal</button>
+          <button id="hardBtn" class="difficulty-btn">Hard</button>
+        </div>
+        <div class="controls">
+          <p><strong>Controls:</strong></p>
+          <p>A/D or ← → Arrow Keys to steer</p>
+          <p>Press P to pause</p>
+          <p>Avoid traffic cars</p>
+          <p>Collect coins for bonus</p>
+        </div>
+        <button id="startButton" class="start-btn">Start Race</button>
+      </div>
+    </div>
+
+    <div id="pauseMenu" class="pause-menu">
+      <div class="pause-content">
+        <h2>PAUSED</h2>
+        <button id="resumeBtn" class="menu-btn">Resume (P)</button>
+        <button id="restartBtn" class="menu-btn">Restart</button>
+        <button id="menuBtn" class="menu-btn">Main Menu</button>
+      </div>
+    </div>
+
+    <div id="gameOverScreen" class="game-over-screen">
+      <div class="game-over-content">
+        <h1 id="gameOverTitle">💥 Crash!</h1>
+        <div class="stats">
+          <p>Final Score: <strong id="finalScore">0</strong></p>
+          <p>Distance: <strong id="finalDistance">0</strong>m</p>
+          <p>Coins Collected: <strong id="finalCoins">0</strong></p>
+          <p>Best Score: <strong id="bestScore">0</strong></p>
+        </div>
+        <p class="restart-hint">Press R to restart</p>
+        <button id="playAgainBtn" class="start-btn">Play Again</button>
+      </div>
     </div>
 
     <script type="module" src="script.js"></script>
